@@ -1,9 +1,9 @@
 import './App.css';
-import Reducer from './components/reducer';
+import ReducerState from './components/reducerState';
 
 function App() {
   return (
-    <Reducer/>
+    <ReducerState/>
   )
 }
 

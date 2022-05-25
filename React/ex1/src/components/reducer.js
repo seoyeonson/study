@@ -1,19 +1,18 @@
 import React, { useReducer } from "react";
-import { reducer } from "../reducer";
+import {reducer} from "../reducer";
 
 const Reducer = () => {
     const initialState = 0;
     const [number, dispatch] = useReducer(reducer, initialState)
-
+    
     const onIncrement = () => {
         dispatch({type: "INCREMENT"})
     };
-
     const onDecrement = () => {
         dispatch({type: "DECREMENT"})
     };
-
-    return (
+    
+    return(
         <div>
             <p>{number}</p>
             <button onClick={onIncrement}>+</button>
@@ -21,4 +20,5 @@ const Reducer = () => {
         </div>
     )
 }
-export default Reducer
+
+export default Reducer;
