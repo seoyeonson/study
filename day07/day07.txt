@@ -1,0 +1,174 @@
+-------------------------------------- 복습
+리액트란?
+복잡한 구조의 레이아웃을 컴포넌트 단위로 개발할 수 있도록 하는 js 라이브러리
+
+리액트의 핵심 컨셉?
+리랜더와 컴포넌트
+
+CSS-IN-js
+
+
+hook 함수
+state (* state 불변성 : (...), immer)
+ref ====> domselector ===> 리액트에서는 지양해야할 필요가 있음. 넷플릭스는 ref를 절대 사용하지 않는다.
+effect
+memo
+callback
+
+전역 상태관리 툴
+contextAPI, reducer
+
+-----------------------------------------
+
+React bootstrap
+
+http://react-bootstrap.netlify.app/
+- Getting Started <-------- 사용법이 보통 적혀있습니다. 다른 라이브러리들도 마찬가지
+- Components에서 내가 원하는 디자인을 선택해 적용
+
+-----------------------------------------
+
+1.
+App.js 혹은 index.js에서
+import 'bootstrap/dist/css/bootstrap.min.css'; 선언
+
+2.
+적용할 컴포넌트에서
+import { 내가 사용하고자하는 부트스트랩 컴포넌트명 } from "react-bootstrap";
+ex) import { Nav } from "react-bootstrap";
+
+-----------------------------------------
+
+npm i react-bootstrap bootstrap
+
+설치 후 실행했을 때,
+
+[Compiled with warnings.
+
+   Warning
+   (6:29521) autoprefixer: Replace color-adjust to print- 
+   color-adjust. The color-adjust shorthand is currently 
+   deprecated.
+
+   Search for the keywords to learn more about each 
+    warning.
+    To ignore, add // eslint-disable-next-line to the line 
+    before.
+
+   WARNING in ./node_modules/bootstrap/dist/css/bootstrap.min.css 
+   (./node_modules/css- 
+   loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss- 
+   loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map- 
+   loader/dist/cjs.js!./node_modules/bootstrap/dist/css/bootstrap.min.css)
+   Module Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+   Warning
+
+   (6:29521) autoprefixer: Replace color-adjust to print-color-adjust. The color- 
+   adjust 
+   shorthand is currently deprecated.
+
+    webpack compiled with 1 warning]
+이런 에러가 발생하면,
+
+>> npm install bootstrap@5.2.0-beta1
+
+-----------------------------------------
+
+컴포넌트에 {children} 적용하기
+<상위컴포넌트> ----- appLayout.js
+    <하위컴포넌트/>
+</상위컴포넌트>
+
+상위 컴포넌트.js 에서
+const 상위 컴포넌트 = ( {children} ) 으로 상위컴포넌트 자식에 
+위치한 하위컴포넌트를 props 로 받아 사용할 수 있다.
+
+-----------------------------------------
+
+레이아웃이 고정이라면 App.js(최상위 컴포넌트)를 감쌀 경우
+모든 페이지에  레이아웃이 적용되지만
+
+레이아웃이 없는 페이지가 있고, 있는 페이지가 따로 있다면
+pages 폴더에 각 js 파일에 레이아웃을 적용
+
+-----------------------------------------
+
+React-router-dom
+: URL 에 따라 해당 URL 울 읽어서 맞는 element 를 보여주는 것
+: 페이지 이동
+npm i react-router-dom
+// 라이브러리 설치할 때 프로젝트 경로에 설치
+
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+
+-----------------------------------------
+(설치파일)
+npm i react-router-dom
+npm i styled-components
+npm i redux react-redux
+npm i redux-saga redux-devtools-extension redux-logger
+-----------------------------------------
+npm i immer : 불변성 쉽게
+npm i moment : 시간
+-----------------------------------------
+npm i shortid : 임의의 id
+npm i @faker-js/faker : 더미데이터
+-----------------------------------------
+
+동기와 비동기?
+    동기적인 흐름?
+    = 너는 나랑 동기야 그러니까 같이 가자
+    : 동기는 요청을 보낸 후 결과물을 받아야지만 다음 동작이 이루어지는 방식
+
+    비동기적인 흐름?
+    = 너는 나랑 동기 아니잖아? 너는 너 갈길 가 우린 갈길 갈게
+    : 비동기는 요청을 보낸 후 결과물을 받지 않아도 다음 동작이 이루어지는 방식
+
+-----------------------------------------
+
+자바스트립트 = 싱글 스레드 = 한번에 하나의 작업만 처리 가능
+위에서부터 아래로 실행
+
+즉, 자바스크립트에서 처리가 오래 걸리는 경우 이를 비동기로 처리하여
+따로 작업을 수행할 수 있도록 함
+
+그러나..
+---------처리 중인 데이터
+console.log(받아온 데이터)
+
+---------------------
+
+Promise(성공, 실패)
+---------처리.then(처리할 로직)
+async await ( await 처리할 비동기 통신 )
+
+---------------------
+
+Redux 의 middle ware
+
+리덕스는 동기적인 흐름을 통해 동작
+액션생성 -> 디스패치 액션발생 -> store 에 전달 -> 리듀서는 정해진 로직에 의해 액션을 처리 생타값 반환
+
+하지만 리덕스에서는 동기적인 흐름만으로 처리하기 힘든 작업 존재
+예를 들면 시간을 딜레이 시켜 동작, 외부에서 데이터를 요청하여 그에 따른 응답을 화면에 보여주는 경우
+
+리덕스는 이러한 비동기 작업을 처리하기 위한 지침을 알려주지 않고 있습니다.
+따라서 이러한 비동기 작업을 처리하는데 있어서 리덕스의 미들웨어를 주로 사용
+
+---------------------
+
+Redux 의 middle ware 의 종류
+
+Thunk
+: redux-thunk 는 리덕스 미들웨어에서 비동기 작업을 처리하는데 사용하는 미들웨어로
+가장 대표적인 미들웨어 중 하나,
+액션 생성 : 함수가 객체가 아닌 함수를 변환할 수 있음,
+객체 아닌 함수를 반환함으로서 필요할 때 함수를 호출할 수 있는 thunk의 형태가 된다.
+
+Saga
+: redux-saga 또한 비동기 작업을 다루는 미들웨어 중 대표적으로 사용하는 미들웨어이며,
+제너레이터를 사용하여 yeild 를 통한 순차적 처리가 가능(동기적 흐름으로 처리가능)
+특히, state 상태 관리에 매우 적합하며 thunk 의 경우,
+딜레이 실행을 직접 구현해야하는 불편함이 있지만 saga 는 이를 모두 지원
+
+---------------------

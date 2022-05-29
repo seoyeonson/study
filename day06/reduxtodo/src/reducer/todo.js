@@ -20,7 +20,7 @@ export const INSERT_TODO = "INSERT_TODO";
 const todo = (state=initailState, action) => {
     switch (action.type){
         case INSERT_TODO:
-            return state.concat({id:action.dada.id, todo:action.data.todo})
+            return state.concat({id:action.data.id, todo:action.data.todo})
         default:
             return state;
     }
