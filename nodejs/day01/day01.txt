@@ -41,7 +41,7 @@ callback 지옥?
 
     해결 방안으로는 
     기명함수 (함수 변수화 시켜서 이름 지어주는 것)
-    promise, async/awiat 등이 있음
+    promise, async/await 등이 있음
 
 promise?
     비동기를 접하게 되었을 때 악명 높은 콜백 지옥을 탈출했다는 점에서
